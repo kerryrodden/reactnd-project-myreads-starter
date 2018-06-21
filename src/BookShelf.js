@@ -1,6 +1,7 @@
 import React from 'react'
-import Book from './Book'
 import './App.css'
+
+const BOOK_WIDTH = 128
 
 class BookShelf extends React.Component {
   render() {
@@ -11,7 +12,22 @@ class BookShelf extends React.Component {
           <ol className="books-grid">
             {this.props.books.map((book) => (
               <li key={book.id}>
-                <Book title={book.title} authors={book.authors} thumbnailUrl={book.imageLinks.smallThumbnail} />
+                <div className="book">
+                  <div className="book-top">
+                    <div className="book-cover"><img width={BOOK_WIDTH} src={book.imageLinks.smallThumbnail} alt="" /></div>
+                    <div className="book-shelf-changer">
+                      <select>
+                        <option value="move" disabled>Move to...</option>
+                        <option value="currentlyReading">Currently Reading</option>
+                        <option value="wantToRead">Want to Read</option>
+                        <option value="read">Read</option>
+                        <option value="none">None</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div className="book-title">{book.title}</div>
+                  <div className="book-authors">{book.authors.join(', ')}</div>
+                </div>
               </li>
             ))}
           </ol>
