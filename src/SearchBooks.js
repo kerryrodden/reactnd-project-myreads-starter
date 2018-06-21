@@ -11,11 +11,12 @@ class SearchBooks extends React.Component {
   }
 
   updateQuery = (query) => {
-    this.setState({ query: query.trim() })
-    if (query === '') {
+    this.setState({ query })
+    const trimmedQuery = query.trim();
+    if (trimmedQuery === '') {
       this.setState({ results: [] })
     } else {
-      BooksAPI.search(query).then((results) => {
+      BooksAPI.search(trimmedQuery).then((results) => {
         if (results && Array.isArray(results)) {
           this.setState({ results })
         } else {
