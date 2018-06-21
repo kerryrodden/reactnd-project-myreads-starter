@@ -5,12 +5,13 @@ const BOOK_WIDTH = 128
 
 class Book extends React.Component {
   render() {
+    const book = this.props.book;
     return (
       <div className="book">
         <div className="book-top">
-          <div className="book-cover"><img width={BOOK_WIDTH} src={this.props.thumbnailUrl} alt=""/></div>
+          <div className="book-cover"><img width={BOOK_WIDTH} src={book.imageLinks.smallThumbnail} alt=""/></div>
           <div className="book-shelf-changer">
-            <select>
+            <select value={book.shelf} onChange={(event) => this.props.onShelfChange(book, event.target.value)}>
               <option value="move" disabled>Move to...</option>
               <option value="currentlyReading">Currently Reading</option>
               <option value="wantToRead">Want to Read</option>
@@ -19,8 +20,8 @@ class Book extends React.Component {
             </select>
           </div>
         </div>
-        <div className="book-title">{this.props.title}</div>
-        <div className="book-authors">{this.props.authors.join(', ')}</div>
+        <div className="book-title">{book.title}</div>
+        <div className="book-authors">{book.authors.join(', ')}</div>
       </div>
     )
   }
