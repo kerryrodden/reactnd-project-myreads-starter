@@ -17,8 +17,8 @@ class Book extends React.Component {
       <div className="book">
         <div className="book-top">
           <div className="book-cover">
-            {book.imageLinks && book.imageLinks.smallThumbnail && (
-              <img width={BOOK_WIDTH} src={book.imageLinks.smallThumbnail} alt="" />
+            {book.imageLinks && book.imageLinks.thumbnail && (
+              <img width={BOOK_WIDTH} src={book.imageLinks.thumbnail} alt="" />
             )}
           </div>
           <div className="book-shelf-changer">

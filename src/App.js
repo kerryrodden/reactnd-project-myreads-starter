@@ -27,6 +27,8 @@ class BooksApp extends React.Component {
       // Add the book to our list
       updatedBooks = this.state.books.concat([book])
     }
+    // Remove any books whose shelf is now "none"
+    updatedBooks = updatedBooks.filter((currentBook) => currentBook.shelf && currentBook.shelf !== "none")
     this.setState({ books: updatedBooks })
     BooksAPI.update(book, newShelf)
   }
