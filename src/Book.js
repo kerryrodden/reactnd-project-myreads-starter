@@ -1,9 +1,16 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import './App.css'
 
 const BOOK_WIDTH = 128
 
 class Book extends React.Component {
+
+  static propTypes = {
+    book: PropTypes.object.isRequired,
+    onShelfChange: PropTypes.func.isRequired
+  }
+
   render() {
     const book = this.props.book;
     return (

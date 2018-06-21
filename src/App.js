@@ -21,8 +21,10 @@ class BooksApp extends React.Component {
     book.shelf = newShelf
     let updatedBooks = this.state.books
     if (this.state.books.some((currentBook) => book.id === currentBook.id)) {
+      // Book is already in our list, so just update it
       updatedBooks = this.state.books.map((currentBook) => (book.id === currentBook.id) ? book : currentBook)
     } else {
+      // Add the book to our list
       updatedBooks = this.state.books.concat([book])
     }
     this.setState({ books: updatedBooks })
