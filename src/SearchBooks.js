@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import * as BooksAPI from './BooksAPI'
+import Book from './Book'
 import './App.css'
 
 class SearchBooks extends React.Component {
@@ -11,11 +12,17 @@ class SearchBooks extends React.Component {
 
   updateQuery = (query) => {
     this.setState({ query: query.trim() })
-    BooksAPI.search(query).then((results) => this.setState({ results }))
-  }
-
-  clearQuery = () => {
-    this.setState({ query: '' })
+    if (query === '') {
+      this.setState({ results: [] })
+    } else {
+      BooksAPI.search(query).then((results) => {
+        if (results && Array.isArray(results)) {
+          this.setState({ results })
+        } else {
+          this.setState({ results: [] })
+        }
+      })
+    }
   }
 
   render() {
@@ -37,7 +44,13 @@ class SearchBooks extends React.Component {
           </div>
         </div>
         <div className="search-books-results">
-          <ol className="books-grid"></ol>
+          <ol className="books-grid">
+            {this.state.results.map((book) => (
+              <li key={book.id}>
+                <Book book={book} onShelfChange={this.props.onShelfChange} />
+              </li>
+            ))}
+          </ol>
         </div>
       </div>
     )

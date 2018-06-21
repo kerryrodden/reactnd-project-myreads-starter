@@ -9,9 +9,13 @@ class Book extends React.Component {
     return (
       <div className="book">
         <div className="book-top">
-          <div className="book-cover"><img width={BOOK_WIDTH} src={book.imageLinks.smallThumbnail} alt=""/></div>
+          <div className="book-cover">
+            {book.imageLinks && book.imageLinks.smallThumbnail && (
+              <img width={BOOK_WIDTH} src={book.imageLinks.smallThumbnail} alt="" />
+            )}
+          </div>
           <div className="book-shelf-changer">
-            <select value={book.shelf} onChange={(event) => this.props.onShelfChange(book, event.target.value)}>
+            <select value={book.shelf ? book.shelf : 'none'} onChange={(event) => this.props.onShelfChange(book, event.target.value)}>
               <option value="move" disabled>Move to...</option>
               <option value="currentlyReading">Currently Reading</option>
               <option value="wantToRead">Want to Read</option>
@@ -21,7 +25,9 @@ class Book extends React.Component {
           </div>
         </div>
         <div className="book-title">{book.title}</div>
-        <div className="book-authors">{book.authors.join(', ')}</div>
+        {book.authors && (
+          <div className="book-authors">{book.authors.join(', ')}</div>
+        )}
       </div>
     )
   }
