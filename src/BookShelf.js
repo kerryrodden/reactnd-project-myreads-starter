@@ -16,7 +16,7 @@ class BookShelf extends React.Component {
                   <div className="book-top">
                     <div className="book-cover"><img width={BOOK_WIDTH} src={book.imageLinks.smallThumbnail} alt="" /></div>
                     <div className="book-shelf-changer">
-                      <select>
+                      <select value={book.shelf} onChange={(event) => this.props.onShelfChange(book, event.target.value)}>
                         <option value="move" disabled>Move to...</option>
                         <option value="currentlyReading">Currently Reading</option>
                         <option value="wantToRead">Want to Read</option>
