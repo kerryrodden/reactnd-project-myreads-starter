@@ -9,9 +9,9 @@ class BookShelf extends React.Component {
         <h2 className="bookshelf-title">{this.props.title}</h2>
         <div className="bookshelf-books">
           <ol className="books-grid">
-            {this.props.books.map((book, index) => (
-              <li key={index}>
-                <Book title={book.title} authors={book.authors} width={book.width} height={book.height} backgroundImage={book.backgroundImage} />
+            {this.props.books.map((book) => (
+              <li key={book.id}>
+                <Book title={book.title} authors={book.authors} thumbnailUrl={book.imageLinks.smallThumbnail} />
               </li>
             ))}
           </ol>

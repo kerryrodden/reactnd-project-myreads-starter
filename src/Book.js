@@ -1,12 +1,14 @@
 import React from 'react'
 import './App.css'
 
+const BOOK_WIDTH = 128
+
 class Book extends React.Component {
   render() {
     return (
       <div className="book">
         <div className="book-top">
-          <div className="book-cover" style={{ width: this.props.width, height: this.props.height, backgroundImage: this.props.backgroundImage }}></div>
+          <div className="book-cover"><img width={BOOK_WIDTH} src={this.props.thumbnailUrl} alt=""/></div>
           <div className="book-shelf-changer">
             <select>
               <option value="move" disabled>Move to...</option>
